@@ -1,5 +1,7 @@
 package demo.spring.demospringmvc1.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.ApplicationContext;
@@ -13,12 +15,16 @@ import java.util.Arrays;
 
 @Controller
 public class WelcomeController {
+
+  private static Logger logger= LoggerFactory.getLogger(WelcomeController.class);
+
   @Autowired
   private ApplicationContext applicationContext;
 
   @GetMapping("/")
   public String welcome(Model model){
     model.addAttribute("tagline","Hello Spring MVC");
+    logger.info("Simple Logger Message.");
     return "welcome";
   }
 
