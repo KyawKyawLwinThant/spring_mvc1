@@ -24,17 +24,19 @@ public class WelcomeController {
   @GetMapping("/")
   public String welcome(Model model){
     model.addAttribute("tagline","Hello Spring MVC");
-    logger.info("Simple Logger Message.");
+
     return "welcome";
   }
 
   @Bean @Profile("dev")
   public CommandLineRunner runner(){
     return a ->{
+      logger.error("Simple Logger Message.");
       Arrays.stream(this.applicationContext.getBeanDefinitionNames())
               .sorted()
               .forEach(System.out::println);
     };
+
   }
 
 
