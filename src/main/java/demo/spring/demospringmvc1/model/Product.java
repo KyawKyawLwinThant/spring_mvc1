@@ -17,15 +17,14 @@ public class Product implements Serializable {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
-  @NotEmpty
+  @NotEmpty(message = "{msg.valid.name}")
   private String name;
-  @NotZero
+  @NotZero(message = "{msg.valid.quantity}")
   private int quantity;
-  @Min(100)@Max(10000)
   private double price;
-  @NotEmpty
+  @NotEmpty(message = "Description must not be empty!")
   private String description;
-  @DateTimeFormat(pattern = "dd-MM-yyyy")
+  @DateTimeFormat(pattern = "yyyy-MM-dd")
   private LocalDate lastUpdated;
   @ManyToOne
   private Category category;

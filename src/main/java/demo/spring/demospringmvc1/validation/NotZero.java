@@ -23,7 +23,7 @@ import javax.validation.Payload;
 @Constraint(validatedBy = ZeroEnterValid.class)
 public @interface NotZero {
 
-    String message() default "{demo.NotZero}";
+    String message() default "{msg.valid.quantity}";
 
     Class<?>[] groups() default {};
 

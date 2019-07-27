@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/master.html">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+    <div layout:fragment="context">
+        <a href="#" th:href="@{'/product/?lang=us'}" >US</a> | <a href="#" th:href="@{'/product/?lang=de'}">German</a> |
+        <a href="#" th:href="@{'/product/?lang=fr'}">France</a> | <a href="#" th:href="@{'/product/?lang=ja'}">Myanmar</a>
+        <form action="#" th:action="@{/product}" th:object="${product}" method="post">
+
+
+            <div class="form-group">
+                <label for="name" th:text="#{msg.name.product}"></label>
+                <input type="text"
+                       th:field="*{name}"
+                       class="form-control" name="" id="name" aria-describedby="helpId" placeholder="">
+                <small  th:if="${#fields.errors('name')}" th:errors="*{name}" class="form-text text-danger"></small>
+            </div>
+
+            <div class="form-group">
+                <label for="quantity" th:text="#{msg.name.quantity}"></label>
+                <input type="number"
+                       th:field="*{quantity}"
+                       class="form-control" name="" id="quantity" aria-describedby="helpId" placeholder="">
+                <small th:if="${#fields.errors('quantity')}" th:errors="*{quantity}" class="form-text text-danger"></small>
+            </div>
+
+            <div class="form-group">
+                <label for="price">Price</label>
+                <input type="number"
+                       step="any"
+                       th:field="*{price}"
+                       class="form-control" name="" id="price" aria-describedby="helpId" placeholder="">
+
+            </div>
+
+
+            <div class="form-group">
+                <label for="desc">Description</label>
+                <input type="text"
+                       th:field="*{description}"
+                       class="form-control" name="" id="desc"  placeholder="">
+                <small th:if="${#fields.errors('description')}" th:errors="*{description}" class="form-text text-danger"></small>
+            </div>
+
+            <div class="form-group">
+                <label for="lastupdate">Last Updated</label>
+                <input type="date"
+                       th:field="*{lastUpdated}"
+                       class="form-control" name="" id="lastupdate" aria-describedby="helpId" placeholder="">
+            </div>
+
+
+            <div class="form-group">
+                <label for="category">Category Name</label>
+                <select class="form-control" th:field="*{category}" name="" id="category">
+                    <option th:each="cat:${categories}" th:text="${cat.name}" th:value="${cat.id}"></option>
+
+                </select>
+            </div>
+
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+
+
+        </form>
+
+    </div>
+</body>
+</html>

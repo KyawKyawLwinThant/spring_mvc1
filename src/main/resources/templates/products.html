@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/master.html">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+
+ <div layout:fragment="context">
+
+     <table class="table">
+         <thead class="table-dark bg-dark text-light">
+         <tr>
+             <th>Product Name</th>
+             <th>Quantity</th>
+             <th>Price</th>
+             <th>Description</th>
+             <th>Last Updated</th>
+             <th>Category</th>
+             <th>Delete</th>
+             <th>Update</th>
+         </tr>
+         </thead>
+         <tbody>
+         <tr th:each="pro:${products}">
+             <td th:text="${pro.name}"></td>
+             <td th:text="${pro.quantity}"></td>
+             <td th:text="${pro.price}"></td>
+             <td th:text="${pro.description}"></td>
+             <td th:text="${pro.lastUpdated}"></td>
+             <td th:text="${pro.category.name}"></td>
+             <td><a href="#" class="btn btn-primary" th:href="@{'/products/'+ ${pro.id}}">Delete</a></td>
+             <td><a href="#" class="btn btn-primary" th:href="@{'/products/update/'+${pro.id}}">Update</a> </td>
+         </tr>
+
+         </tbody>
+     </table>
+     <a href="#" th:href="@{/product}" class="btn btn-primary">Back</a>
+
+ </div>
+
+</body>
+</html>
