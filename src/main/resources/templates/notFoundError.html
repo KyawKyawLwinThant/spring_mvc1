@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/master.html">
+<head>
+    <meta charset="UTF-8"/>
+    <title>EntityNotFound</title>
+</head>
+<body>
+        <div layout:fragment="context">
+            <h3 class="text-muted" th:text="${messages}"></h3>
+            <h2 class="text text-danger" th:text="${url}"></h2>
+            <h2 class="text-muted" th:text="${exception}"></h2>
+        </div>
+</body>
+</html>

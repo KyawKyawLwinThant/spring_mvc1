@@ -4,20 +4,26 @@ package demo.spring.demospringmvc1.controller;
 import demo.spring.demospringmvc1.model.Product;
 import demo.spring.demospringmvc1.service.CategoryService;
 import demo.spring.demospringmvc1.service.ProductService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import sun.java2d.cmm.Profile;
-
 import javax.naming.Binding;
+import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 
 @Controller
 public class ProductController {
+
+  private static Logger logger= LoggerFactory.getLogger(ProductController.class);
 
   @Autowired
   private ProductService productService;
@@ -72,7 +78,20 @@ public class ProductController {
       return "redirect:/products";
   }
 
+  @GetMapping("/products/details/{id}")
+  public String showDetails(@PathVariable("id") int id,Model model){
+    Product product=productService.findById(id);
+
+    logger.info("product is:"+ product);
+
+    model.addAttribute("product",product);
+    return "productDetails";
+  }
+
   private int updateProductId;
+
+
+
 
 
 }

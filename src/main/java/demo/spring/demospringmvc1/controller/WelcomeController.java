@@ -21,7 +21,7 @@ public class WelcomeController {
   @Autowired
   private ApplicationContext applicationContext;
 
-  @GetMapping("/")
+  @GetMapping("/home")
   public String welcome(Model model){
     model.addAttribute("tagline","Hello Spring MVC");
 
