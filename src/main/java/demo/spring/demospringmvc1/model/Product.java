@@ -1,15 +1,18 @@
 package demo.spring.demospringmvc1.model;
 
+import demo.spring.demospringmvc1.service.BeanUtil;
 import demo.spring.demospringmvc1.validation.NotZero;
 import lombok.Data;
+import org.ocpsoft.prettytime.PrettyTime;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Data
@@ -28,4 +31,10 @@ public class Product implements Serializable {
   private LocalDate lastUpdated;
   @ManyToOne
   private Category category;
+
+  public String getPrettyTime(){
+    PrettyTime prettyTime= (PrettyTime)BeanUtil.getBean(PrettyTime.class);
+    return prettyTime.format(new Date(System.currentTimeMillis() + 1000*60*10));
+  }
+
 }

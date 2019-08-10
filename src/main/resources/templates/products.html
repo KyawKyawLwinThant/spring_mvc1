@@ -19,6 +19,7 @@
              <th>Description</th>
              <th>Last Updated</th>
              <th>Category</th>
+             <th>Posted Time</th>
              <th>Delete</th>
              <th>Update</th>
              <th>Details</th>
@@ -32,6 +33,7 @@
              <td th:text="${pro.description}"></td>
              <td th:text="${pro.lastUpdated}"></td>
              <td th:text="${pro.category.name}"></td>
+             <td class="text-muted" th:text="${pro.getPrettyTime()}"></td>
              <td><a href="#" class="btn btn-primary" th:href="@{'/products/'+ ${pro.id}}">Delete</a></td>
              <td><a href="#" class="btn btn-primary" th:href="@{'/products/update/'+${pro.id}}">Update</a> </td>
              <td><a href="#" class="btn btn-primary" th:href="@{'/products/details/'+${pro.id}}">Details</a></td>
@@ -39,7 +41,11 @@
 
          </tbody>
      </table>
-     <a href="#" th:href="@{/product}" class="btn btn-primary">Back</a>
+     <div>
+         <a href="#" th:href="@{/product}" class="btn btn-primary mr-3">Back</a>
+         <a href="#" th:href="@{/products/pdf}" class="btn btn-success">PDF Report</a>
+     </div>
+
 
  </div>
 

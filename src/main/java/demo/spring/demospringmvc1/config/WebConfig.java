@@ -1,11 +1,14 @@
 package demo.spring.demospringmvc1.config;
 
+import com.sun.tools.javac.tree.Pretty;
+import org.ocpsoft.prettytime.PrettyTime;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -62,6 +65,20 @@ public class WebConfig implements WebMvcConfigurer {
     LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
     bean.setValidationMessageSource(messageSource());
     return bean;
+  }
+
+  @Bean
+  public PrettyTime prettyTime(){
+    PrettyTime prettyTime=new PrettyTime();
+    return prettyTime;
+  }
+
+
+  @Bean
+  public BCryptPasswordEncoder bCryptPasswordEncoder(){
+    BCryptPasswordEncoder bCryptPasswordEncoder=new
+            BCryptPasswordEncoder();
+    return bCryptPasswordEncoder;
   }
 
 

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/master.html">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+    <div layout:fragment="context">
+        <div class="text-center">
+            <h1>Error Page</h1>
+            <h3 class="text-muted" th:text="${msg}"></h3>
+            <h3 class="text-muted" th:text="${url}"></h3>
+            <p>Sorry. Our team is going on.</p>
+        <a href="#" th:href="@{/products}">Home</a>
+
+        </div>
+    </div>
+</body>
+</html>

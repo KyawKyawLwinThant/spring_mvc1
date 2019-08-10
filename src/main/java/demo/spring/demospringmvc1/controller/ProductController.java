@@ -7,7 +7,10 @@ import demo.spring.demospringmvc1.service.ProductService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +22,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import javax.naming.Binding;
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
+import java.io.ByteArrayInputStream;
 
 @Controller
 public class ProductController {
@@ -86,6 +90,19 @@ public class ProductController {
 
     model.addAttribute("product",product);
     return "productDetails";
+  }
+  @GetMapping("/products/pdf")
+  public ResponseEntity<InputStreamResource> generatePdf(){
+    ByteArrayInputStream bis=PdfReport.productPdfViews(productService.findAll());
+    HttpHeaders headers=new HttpHeaders();
+    headers.add("Content-Disposition","inline;filename=products_report.pdf");
+
+
+    return ResponseEntity
+            .ok()
+            .headers(headers)
+            .contentType(MediaType.APPLICATION_PDF)
+            .body(new InputStreamResource(bis));
   }
 
   private int updateProductId;
