@@ -1,5 +1,6 @@
 package demo.spring.demospringmvc1.model;
 
+import demo.spring.demospringmvc1.validation.PasswordNotSame;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,6 +18,7 @@ public class User implements UserDetails {
   private Integer id;
   private String firstName;
   private String lastName;
+  @Column(unique = true)
   private String email;
   private String password;
   @Transient

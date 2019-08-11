@@ -19,9 +19,11 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
+import org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect;
 
 import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.ConstraintViolationException;
 import java.util.Locale;
 
 @Configuration
@@ -67,6 +69,13 @@ public class WebConfig implements WebMvcConfigurer {
     return bean;
   }
 
+  // TODO * Configuring this bean should not be needed once Spring Boot's Thymeleaf starter includes configuration
+// TODO   for thymeleaf-extras-springsecurity5 (instead of thymeleaf-extras-springsecurity4)
+  @Bean
+  public SpringSecurityDialect securityDialect() {
+    return new SpringSecurityDialect();
+  }
+
   @Bean
   public PrettyTime prettyTime(){
     PrettyTime prettyTime=new PrettyTime();
@@ -83,8 +92,8 @@ public class WebConfig implements WebMvcConfigurer {
 
 
 
-  @ExceptionHandler(EntityNotFoundException.class)
-  public ModelAndView handleEntityNotFoundException(EntityNotFoundException ex, HttpServletRequest request){
+  @ExceptionHandler({EntityNotFoundException.class, ConstraintViolationException.class})
+  public ModelAndView handleException(Exception ex, HttpServletRequest request){
     ModelAndView mv=new ModelAndView();
     mv.addObject("messages",ex.getMessage());
     mv.addObject("url",request.getRequestURL());

@@ -18,10 +18,12 @@ public class MyErrorController implements ErrorController {
 
     if(statusCode!=null){
       switch (Integer.valueOf(statusCode.toString())){
+
        case 404:
          model.addAttribute("msg","Your Page Not Found.");
          model.addAttribute("url",request.getRequestURL());
          break;
+
         case 500:
           model.addAttribute("msg","Internal Server Error.");
           model.addAttribute("url",request.getRequestURL());

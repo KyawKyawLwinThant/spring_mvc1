@@ -59,6 +59,7 @@ public class ProductController {
   @GetMapping("/products")
   public String showAllProducts(Model model){
       model.addAttribute("products",productService.findAll());
+      model.addAttribute("register",model.containsAttribute("register"));
       return "products";
   }
 

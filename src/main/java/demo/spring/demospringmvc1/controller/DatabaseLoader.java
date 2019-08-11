@@ -32,9 +32,9 @@ public class DatabaseLoader implements CommandLineRunner {
     admin.addRole(adminRole);
     user.addRole(userRole);
 
-//    roleRepository.save(userRole);
-//    roleRepository.save(adminRole);
-//    userRepository.save(admin);
-//    userRepository.save(user);
+   /* roleRepository.save(userRole);
+    roleRepository.save(adminRole);
+    userRepository.save(admin);
+    userRepository.save(user);*/
   }
 }
